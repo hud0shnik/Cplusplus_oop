@@ -1,0 +1,6 @@
+﻿  first_21_09_21.cpp
+D:\PROEEEEEEEEEEEEEEEEKTbI\gith\cplusplus_oop\lab\first_21_09_21\first_21_09_21\first_21_09_21.cpp(15,3): warning C4834: отмена возвращаемого значения функции с атрибутом "nodiscard"
+D:\PROEEEEEEEEEEEEEEEEKTbI\gith\cplusplus_oop\lab\first_21_09_21\first_21_09_21\first_21_09_21.cpp(48,3): warning C4834: отмена возвращаемого значения функции с атрибутом "nodiscard"
+D:\PROEEEEEEEEEEEEEEEEKTbI\gith\cplusplus_oop\lab\first_21_09_21\first_21_09_21\first_21_09_21.cpp(73,3): warning C4834: отмена возвращаемого значения функции с атрибутом "nodiscard"
+D:\PROEEEEEEEEEEEEEEEEKTbI\gith\cplusplus_oop\lab\first_21_09_21\first_21_09_21\first_21_09_21.cpp(84,3): warning C4834: отмена возвращаемого значения функции с атрибутом "nodiscard"
+  first_21_09_21.vcxproj -> D:\PROEEEEEEEEEEEEEEEEKTbI\gith\cplusplus_oop\lab\first_21_09_21\Debug\first_21_09_21.exe
