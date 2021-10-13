@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <iostream>
 
 using namespace std;
@@ -308,8 +308,8 @@ protected:
 		p->setLeft(q->getRight());
 		q->setRight(p);
 
-		if (p == root) {
-			root = q;
+		if (p == Tree<T>::root) {
+			Tree<T>::root = q;
 		}
 
 		fixHeight(p);
@@ -342,8 +342,8 @@ protected:
 		q->setRight(p->getLeft());
 		p->setLeft(q);
 
-		if (q == root) {
-			root = p;
+		if (q == Tree<T>::root) {
+			Tree<T>::root = p;
 		}
 
 		fixHeight(q);
@@ -383,14 +383,14 @@ public:
 
 	virtual Node<T>* Add_R(Node<T>* N)
 	{
-		return Add_R(N, root);
+		return Add_R(N, Tree<T>::root);
 	}
 
 	//рекуррентная функция добавления узла. Устроена аналогично, но вызывает сама себя - добавление в левое или правое поддерево
 	virtual Node<T>* Add_R(Node<T>* N, Node<T>* Current)
 	{
 		//вызываем функцию Add_R из базового класса
-		Node<T>* AddedNode = Tree::Add_R(N, Current);
+		Node<T>* AddedNode = Tree<T>::Add_R(N, Current);
 		//применяем к добавленному узлу балансировку
 		return Balance(AddedNode);
 	}
@@ -413,6 +413,8 @@ public:
 int main()
 {
 	AVL_Tree<double> T;
+	//ptr = &T;
+
 	int arr[15];
 	int i = 0;
 	for (i = 0; i < 15; i++) arr[i] = (int)(100 * cos(15 * double(i)));
