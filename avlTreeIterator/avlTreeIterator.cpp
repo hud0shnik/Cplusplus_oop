@@ -245,12 +245,12 @@ public:
 			ptr = T->Min(ptr->getRight());
 			return *this;
 		}
-		Node<T>* Current = ptr;
+		Node<ValueType>* Current = ptr;
 		while (true) {
-			if (Current->getParent == NULL)	return *this;
+			if (Current->getParent() == NULL)	return *this;
 			
 			if (Current->getParent()->getLeft()==Current){
-				ptr = ptr->getParent();
+				ptr = Current->getParent();
 				return *this;
 			}
 			Current = Current->getParent();
@@ -267,13 +267,13 @@ public:
 			ptr = T->Min(ptr->getRight());
 			return *this;
 		}
-		Node<T>* Current = ptr;
+		Node<ValueType>* Current = ptr;
 
 		while (true) {
-			if (Current->getParent == NULL)	return *this;
+			if (Current->getParent() == NULL)	return *this;
 
 			if (Current->getParent()->getLeft() == Current) {
-				ptr = ptr->getParent();
+				ptr = Current->getParent();
 				return *this;
 			}
 			Current = Current->getParent();
@@ -300,8 +300,8 @@ public:
 
 	TreeIterator<T> iterator;
 
-	TreeIterator<T> begin() { TreeIterator<T> it = TreeIterator<T>(this, Min()); return it; }
-	TreeIterator<T> end() { TreeIterator<T> it = TreeIterator<T>(this, Max()); return it; }
+	TreeIterator<T> begin() { TreeIterator<T> it = TreeIterator<T>(this, Tree<T>::Min()); return it; }
+	TreeIterator<T> end() { TreeIterator<T> it = TreeIterator<T>(this, Tree<T>::Max()); return it; }
 };
 
 //AVL_Tree - потомок класса Tree
@@ -341,8 +341,8 @@ protected:
 		Node<T>* q = p->getLeft();
 		p->setLeft(q->getRight());
 		q->setRight(p);
-		if (p == root)
-			root = q;
+		if (p == Tree<T>::root)
+			Tree<T>::root = q;
 
 		q->setParent(p->getParent());
 		p->setParent(q);
@@ -358,8 +358,8 @@ protected:
 		Node<T>* p = q->getRight();
 		q->setRight(p->getLeft());
 		p->setLeft(q);
-		if (q == root)
-			root = p;
+		if (q == Tree<T>::root)
+			Tree<T>::root = p;
 
 		p->setParent(q->getParent());
 		q->setParent(p);
@@ -402,14 +402,14 @@ public:
 
 	virtual Node<T>* Add_R(Node<T>* N)
 	{
-		return Add_R(N, root);
+		return Add_R(N, Tree<T>::root);
 	}
 
 	//рекуррентная функция добавления узла. Устроена аналогично, но вызывает сама себя - добавление в левое или правое поддерево
 	virtual Node<T>* Add_R(Node<T>* N, Node<T>* Current)
 	{
 		//вызываем функцию Add_R из базового класса
-		Node<T>* AddedNode = Tree::Add_R(N, Current);
+		Node<T>* AddedNode = Tree<T>::Add_R(N, Current);
 		//применяем к добавленному узлу балансировку
 		return Balance(AddedNode);
 	}
@@ -447,14 +447,14 @@ int main()
 	T.InOrder(T.getRoot(), f_ptr);
 	/*cout << "\n-----\nPostorder:";
 	T.PostOrder(T.getRoot(), f_ptr);*/
-	/*cout << "\nIterators:\n";
+	cout << "\nIterators:\n";
 	T.iterator = T.begin();
 	while (T.iterator != T.end())
 	{
 		cout << *T.iterator << " ";
 		T.iterator++;
 	}
-	cout << *T.iterator << " ";*/
+	cout << *T.iterator << " ";
 
 	char c; cin >> c;
 	return 0;
