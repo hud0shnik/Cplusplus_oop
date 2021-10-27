@@ -11,7 +11,7 @@ using namespace std;
 */
 
 void push(list < complex < int >>& lst, complex < int > element) {
-    auto it = lst.cbegin();
+    auto it = lst.begin();
     while ((it != lst.end()) && (sqrt(real(element) * real(element) + imag(element) * imag(element)) > sqrt(real(*it) * real(*it) + imag(*it) * imag(*it)))) {
         *it++;
     }
@@ -34,8 +34,8 @@ bool P(complex < int > element) {
 
 list < complex < int > > filter(list < complex < int > >& lst, bool(*ptr)(complex < int >)) {
     list < complex < int > > son;
-    auto it = lst.cbegin();
-    while (it != lst.cend()) {
+    auto it = lst.begin();
+    while (it != lst.end()) {
         if (P(*it)) {
             son.push_back(*it);
         }
@@ -45,7 +45,7 @@ list < complex < int > > filter(list < complex < int > >& lst, bool(*ptr)(comple
 }
 
 void print(list < complex < int > >& lst) {
-    for (auto it = lst.cbegin(); it != lst.cend(); *it++) {
+    for (auto it = lst.begin(); it != lst.end(); *it++) {
         cout << *it << " ";
     }
     cout << endl;
