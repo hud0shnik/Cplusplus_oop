@@ -78,6 +78,14 @@ public:
 		Name = "";
 	}
 
+	sportsman(int medals, int age, string name, string lastname, string citizenship, string sport) {
+		Medals = medals;
+		Age = age;
+		Name = name;
+		LastName = lastname;
+		Citizenship = citizenship;
+		Sport = sport;
+	}
 	sportsman(int medals, int age, string name) {
 		Medals = medals;
 		Age = age;
@@ -146,9 +154,9 @@ void sort(list < sportsman >& father) {
 
 int main() {
 
-	sportsman first(99, 28, "Aboba");
+	sportsman first(99, 28, "Johny");
 	sportsman second(13, 28, "Arnold");
-	sportsman third(4, 18, "Sanya");
+	sportsman third(403, 18, "Sanya");
 
 	list < sportsman > example;
 	example.push_back(first);
