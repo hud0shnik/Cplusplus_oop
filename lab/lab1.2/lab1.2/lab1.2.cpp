@@ -14,8 +14,8 @@ using namespace std;
 (по возрастанию)
 */
 
-template < class T >
-void push(list < T >& lst, T element) {
+template <class T>
+void push(list <T>& lst, T element) {
 	auto it = lst.begin();
 	while ((it != lst.end()) && (element > *it)) {
 		*it++;
@@ -27,12 +27,12 @@ void push(list < T >& lst, T element) {
 		lst.push_back(element);
 }
 
-template < class T >
-void pop(list < T >& lst, T element) {
+template <class T>
+void pop(list <T>& lst, T element) {
 	lst.remove(element);
 }
 
-template < class T >
+template <class T>
 bool P(T element) {
 	if (real(element) < 0) {
 		return true;
@@ -40,11 +40,11 @@ bool P(T element) {
 	return false;
 }
 
-template < class T >
-list < T > filter(list < T >& lst, bool(*ptr)(T)) {
-	list < complex < int > > son;
-	auto it = lst.cbegin();
-	while (it != lst.cend()) {
+template <class T>
+list <T> filter(list <T>& lst, bool(*ptr)(T)) {
+	list <complex <int>> son;
+	auto it = lst.begin();
+	while (it != lst.end()) {
 		if (P(*it)) {
 			son.push_back(*it);
 		}
@@ -53,11 +53,11 @@ list < T > filter(list < T >& lst, bool(*ptr)(T)) {
 	return son;
 }
 
-template < class sportsman >
-void print(list < sportsman >& father) {
-	auto it = father.cbegin();
-	for (; it != father.cend(); ++it) {
-		cout << *it << " ";
+template <class sportsman>
+void print(list <sportsman>& father) {
+	auto it = father.begin();
+	for (; it != father.end(); ++it) {
+		cout << *it;
 	}
 }
 
@@ -71,7 +71,6 @@ private:
 	string Sport;
 
 public:
-
 	sportsman() {
 		Medals = 0;
 		Age = 0;
@@ -117,20 +116,20 @@ public:
 			return false;
 	}
 
-	friend ostream& operator << (ostream& ustream,
+	friend ostream& operator <<(ostream& ustream,
 		const sportsman& obj);
 };
 
-template < class T >
-T pop(list < T >& lst, int position = 0) {
-	typename list < T > ::iterator p = lst.begin();
+template <class T>
+T pop(list <T>& lst, int position = 0) {
+	typename list <T> ::iterator p = lst.begin();
 	advance(p, position);
 	T value(*p);
 	lst.erase(p);
 	return value;
 }
 
-ostream& operator << (ostream& ustream,
+ostream& operator <<(ostream& ustream,
 	const sportsman& obj) {
 	ustream << "Medals: " << obj.Medals << " Age: " << obj.Age <<
 		" Name: " << obj.Name;
@@ -139,8 +138,8 @@ ostream& operator << (ostream& ustream,
 	return ustream;
 }
 
-template < class sportsman >
-void sort(list < sportsman >& father) {
+template <class sportsman>
+void bubble(list <sportsman>& father) {
 	auto it = father.begin();
 	auto it1 = father.begin();
 	auto it2 = ++it1;
@@ -158,14 +157,14 @@ int main() {
 	sportsman second(13, 28, "Arnold");
 	sportsman third(403, 18, "Sanya");
 
-	list < sportsman > example;
+	list <sportsman> example;
 	example.push_back(first);
 	example.push_back(second);
 	example.push_back(third);
 
 	print(example);
 
-	sort(example);
+	bubble(example);
 
 	print(example);
 	cout << endl;
