@@ -5,14 +5,14 @@
 using namespace std;
 
 
-void print(list < char >& llist) {
+void print(list <char>& llist) {
 	for (auto it = llist.begin(); it != llist.end(); *it++) {
 		cout << *it << " ";
 	}
 	cout << endl;
 }
 
-void pop(list < char>& llist, char ch) {
+void pop(list <char>& llist, char ch) {
 	llist.remove(ch);
 }
 
@@ -22,7 +22,7 @@ bool predikant(char ch) {
 	}
 	return false;
 }
-void push(list < char>& llist, char ch) {
+void push(list <char>& llist, char ch) {
 	auto it = llist.begin();
 	while ((it != llist.end()) && (ch > *it)) {
 		*it++;
@@ -32,8 +32,8 @@ void push(list < char>& llist, char ch) {
 	else
 		llist.push_back(ch);
 }
-list < char > filter(list < char >& llist, bool(*ptr)(char)) {
-	list < char > son;
+list <char> filter(list <char>& llist, bool(*ptr)(char)) {
+	list <char> son;
 	auto it = llist.begin();
 	while (it != llist.end()) {
 		if (predikant(*it)) {
@@ -46,7 +46,7 @@ list < char > filter(list < char >& llist, bool(*ptr)(char)) {
 
 
 int main() {
-	list < char> llist, llist2;
+	list <char> llist, llist2;
 
 	llist.push_back('U');
 	llist.push_back('S');
