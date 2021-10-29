@@ -5,26 +5,26 @@
 using namespace std;
 
 template <class T>
-void push(list <T>& lst, T element) {
+void push(list <T>& lst, T son) {
 	auto it = lst.begin();
-	while ((it != lst.end()) && (element > *it)) {
+	while ((it != lst.end()) && (son > *it)) {
 		*it++;
 	}
 
 	if (it != lst.end())
-		lst.insert(it, element);
+		lst.insert(it, son);
 	else
-		lst.push_back(element);
+		lst.push_back(son);
 }
 
 template <class T>
-void pop(list <T>& lst, T element) {
-	lst.remove(element);
+void pop(list <T>& lst, T son) {
+	lst.remove(son);
 }
 
 template <class T>
-bool P(T element) {
-	if (real(element) < 0) {
+bool predikant(T son) {
+	if (real(son) < 0) {
 		return true;
 	}
 	return false;
@@ -35,7 +35,7 @@ list <T> filter(list <T>& lst, bool(*ptr)(T)) {
 	list <complex <int>> son;
 	auto it = lst.begin();
 	while (it != lst.end()) {
-		if (P(*it)) {
+		if (predikant(*it)) {
 			son.push_back(*it);
 		}
 		*it++;
@@ -65,6 +65,9 @@ public:
 		Price = 0;
 		Version = 0;
 		Name = "";
+		License = "";
+		Dev = "";
+		Language = "";
 	}
 
 	program(int price, int version, string name, string license, string dev, string language) {
@@ -75,8 +78,8 @@ public:
 		Dev = dev;
 		Language = language;
 	}
-	program(int Price, int version, string name) {
-		Price = Price;
+	program(int price, int version, string name) {
+		Price = price;
 		Version = version;
 		Name = name;
 	}
@@ -100,7 +103,7 @@ public:
 	}
 
 	bool operator == (program& L) {
-		if ((Price == L.Price) & (Version == L.Version) & (Name == L.Name) & (License == L.License))
+		if ((Price == L.Price) & (Version == L.Version) & (Name == L.Name) & (License == L.License) & (Dev == L.Dev) & (Language == L.Language))
 			return true;
 		else
 			return false;
@@ -121,15 +124,15 @@ T pop(list <T>& lst, int position = 0) {
 
 ostream& operator <<(ostream& ustream,
 	const program& obj) {
-	ustream << "Price: " << obj.Price << " Version: " << obj.Version <<
-		" Name: " << obj.Name;
+	ustream << "Price " << obj.Price << " Version " << obj.Version <<
+		" Name " << obj.Name << " ";
 	ustream << endl;
 
 	return ustream;
 }
 
 template <class program>
-void bubble(list <program>& father) {
+void sort(list <program>& father) {
 	auto it = father.begin();
 	auto it1 = father.begin();
 	auto it2 = ++it1;
@@ -142,26 +145,25 @@ void bubble(list <program>& father) {
 }
 
 int main() {
+	list <program> progList;
+	program prog1(777, 1337, "Abobe Photoshop");
+	program prog2(-0, 47, "Hearth$$$tone");
+	program prog3(-666, 418, "viSuAlStUdIO 2010 <3 ");
 
-	program first(99, 28, "Johny");
-	program second(13, 28, "Arnold");
-	program third(403, 18, "Sanya");
+	progList.push_back(prog1);
+	progList.push_back(prog2);
+	progList.push_back(prog3);
 
-	list <program> example;
-	example.push_back(first);
-	example.push_back(second);
-	example.push_back(third);
+	print(progList);
 
-	print(example);
+	sort(progList);
 
-	bubble(example);
-
-	print(example);
+	print(progList);
 	cout << endl;
 
-	cout << pop(example) << endl;
+	cout << pop(progList) << endl;
 
-	print(example);
+	print(progList);
 
 	return 0;
 }
