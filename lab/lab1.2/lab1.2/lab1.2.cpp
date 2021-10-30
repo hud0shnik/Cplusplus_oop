@@ -16,13 +16,13 @@ using namespace std;
 
 template <class T>
 void push(list <T>& lst, T element) {
-	auto it = lst.begin();
-	while ((it != lst.end()) && (element > *it)) {
-		*it++;
+	auto i = lst.begin();
+	while ((i != lst.end()) && (element > *i)) {
+		*i++;
 	}
 
-	if (it != lst.end())
-		lst.insert(it, element);
+	if (i != lst.end())
+		lst.insert(i, element);
 	else
 		lst.push_back(element);
 }
@@ -43,21 +43,21 @@ bool P(T element) {
 template <class T>
 list <T> filter(list <T>& lst, bool(*ptr)(T)) {
 	list <complex <int>> son;
-	auto it = lst.begin();
-	while (it != lst.end()) {
-		if (P(*it)) {
-			son.push_back(*it);
+	auto i = lst.begin();
+	while (i != lst.end()) {
+		if (P(*i)) {
+			son.push_back(*i);
 		}
-		*it++;
+		*i++;
 	}
 	return son;
 }
 
 template <class sportsman>
 void print(list <sportsman>& father) {
-	auto it = father.begin();
-	for (; it != father.end(); ++it) {
-		cout << *it;
+	auto i = father.begin();
+	for (; i != father.end(); ++i) {
+		cout << *i;
 	}
 }
 
@@ -75,6 +75,9 @@ public:
 		Medals = 0;
 		Age = 0;
 		Name = "";
+		LastName = "";
+		Citizenship = "";
+		Sport = "";
 	}
 
 	sportsman(int medals, int age, string name, string lastname, string citizenship, string sport) {
@@ -85,6 +88,7 @@ public:
 		Citizenship = citizenship;
 		Sport = sport;
 	}
+
 	sportsman(int medals, int age, string name) {
 		Medals = medals;
 		Age = age;
@@ -116,8 +120,7 @@ public:
 			return false;
 	}
 
-	friend ostream& operator <<(ostream& ustream,
-		const sportsman& obj);
+	friend ostream& operator <<(ostream& result, const sportsman& obj);
 };
 
 template <class T>
@@ -129,24 +132,30 @@ T pop(list <T>& lst, int position = 0) {
 	return value;
 }
 
-ostream& operator <<(ostream& ustream,
-	const sportsman& obj) {
-	ustream << "Medals: " << obj.Medals << " Age: " << obj.Age <<
-		" Name: " << obj.Name;
-	ustream << endl;
+ostream& operator <<(ostream& result, const sportsman& obj) {
+	if (obj.Citizenship == "" & obj.LastName == "" & obj.Sport == "") {
+		result << "Medals: " << obj.Medals << " Age: " << obj.Age <<
+			" Name: " << obj.Name;
+		result << endl;
+	}
+	else {
+		result << "Medals: " << obj.Medals << " Age: " << obj.Age <<
+			" Name: " << obj.Name << " LastName: " << obj.LastName << " Sitizenship: " << obj.Citizenship << " Sport: " << obj.Sport;
+		result << endl;
+	}
 
-	return ustream;
+	return result;
 }
 
 template <class sportsman>
 void bubble(list <sportsman>& father) {
-	auto it = father.begin();
-	auto it1 = father.begin();
-	auto it2 = ++it1;
-	for (; it != father.end(); ++it) {
-		for (; it2 != (father.end()--); ++it2) {
-			if (*it > *it2)
-				swap(*it, *it2);
+	auto i = father.begin();
+	auto i1 = father.begin();
+	auto i2 = ++i1;
+	for (; i != father.end(); ++i) {
+		for (; i2 != (father.end()--); ++i2) {
+			if (*i > *i2)
+				swap(*i, *i2);
 		}
 	}
 }
