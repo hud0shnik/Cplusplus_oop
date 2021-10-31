@@ -309,7 +309,6 @@ public:
 		}
 
 		if (result == NULL) {
-			cout << "work1" << endl;
 			result = Stack <T> ::push(value);
 		}
 
@@ -397,38 +396,25 @@ int main() {
 	Stack <complex <int>> stack1;
 	Stack <complex <int>> stack2;
 	StackChild <sportsman> stack3;
-
-	stack1.push(-3);
-	stack1.push(0);
-	stack1.push(1);
-	stack1.push(2);
-	stack1.push(8);
-	stack1.push(13);
-	stack1.push(55);
-	stack1.push(56);
-	cout << endl << "After push():" ;
-	cout << stack1;
-
-	stack1.pop();
-	cout << endl << "After pop():";
-	cout << stack1;
-
 	IteratedLinkedList <complex <int>>* ptr1 = &stack1;
 	IteratedLinkedList <complex <int>>* ptr2 = &stack2;
-
+	stack1.push(-9);
+	stack1.push(0);
+	stack1.push(7);
+	stack1.push(-13);
+	stack1.push(23);
+	stack1.push(-44);
+	cout << endl << "After push():" << stack1;
+	stack1.pop();
+	cout << endl << "After pop():" << stack1;
 	stack1.filter(ptr1, ptr2, P);
-	cout << endl << "After filter():";
-	cout << stack2;
-
+	cout << endl << "After filter():"<< stack2;
 	sportsman first(99, 28, "Johny");
 	sportsman second(13, 28, "Arnold");
 	sportsman third(418, 13, "Sanya Teapod");
-
 	stack3.push(first);
 	stack3.push(second);
 	stack3.push(third);
-
 	cout << stack3;
-
 	return 0;
 }
