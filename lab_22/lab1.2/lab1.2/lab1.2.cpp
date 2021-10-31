@@ -1,33 +1,33 @@
 ﻿#include <iostream>
 #include <list>
 #include <iterator>
-#include <complex>
 using namespace std;
 
 template <class T>
-void push(list <T>& lst, T son) {
-	auto it = lst.begin();
-	while ((it != lst.end()) && (son > *it)) {
+void push(list <T>& listOfLetters, T son) {
+	auto it = listOfLetters.begin();
+	while ((it != listOfLetters.end()) && (son > *it)) {
 		*it++;
 	}
 
-	if (it != lst.end())
-		lst.insert(it, son);
+	if (it != listOfLetters.end())
+		listOfLetters.insert(it, son);
 	else
-		lst.push_back(son);
+		listOfLetters.push_back(son);
 }
 
 template <class T>
-void pop(list <T>& lst, T son) {
-	lst.remove(son);
+void pop(list <T>& listOfLetters, T son) {
+	listOfLetters.remove(son);
 }
 
-template <class T>
-bool predikant(T son) {
-	if (real(son) < 0) {
+bool predicate(char letter) {
+	if (islower(letter)) {
 		return true;
 	}
-	return false;
+	else {
+		return false;
+	}
 }
 
 template <class T>
@@ -84,26 +84,27 @@ public:
 		Name = name;
 	}
 
-	bool operator > (program& L) {
-		bool res = false;
-		if (Price > L.Price)
-			res = true;
-		else if (Price == L.Price)
-			if (Version > L.Version)
-				res = true;
-			else if (Version == L.Version)
-				if (Name > L.Name)
-					res = true;
-				else if (Name == L.Name)
-					if (License > L.License)
-						res = true;
-					else if (License == L.License)
-						cout << "programs match";
-		return res;
+	bool operator > (program& info) {
+		bool result = false;
+		if (Price > info.Price)
+			result = true;
+		else if (Price == info.Price)
+			if (Version > info.Version)
+				result = true;
+			else if (Version == info.Version)
+				if (Name > info.Name)
+					result = true;
+				else if (Name == info.Name)
+					if (License > info.License)
+						result = true;
+					else if (License == info.License)
+						cout << "Programs match";
+		return result;
 	}
 
-	bool operator == (program& L) {
-		if ((Price == L.Price) & (Version == L.Version) & (Name == L.Name) & (License == L.License) & (Dev == L.Dev) & (Language == L.Language))
+	bool operator == (program& info) {
+		if ((Price == info.Price) & (Version == info.Version) & (Name == info.Name)
+			& (License == info.License) & (Dev == info.Dev) & (Language == info.Language))
 			return true;
 		else
 			return false;
@@ -114,11 +115,11 @@ public:
 };
 
 template <class T>
-T pop(list <T>& lst, int position = 0) {
-	typename list <T> ::iterator p = lst.begin();
+T pop(list <T>& listOfLetters, int position = 0) {
+	typename list <T> ::iterator p = listOfLetters.begin();
 	advance(p, position);
 	T value(*p);
-	lst.erase(p);
+	listOfLetters.erase(p);
 	return value;
 }
 
@@ -133,37 +134,37 @@ ostream& operator <<(ostream& ustream,
 
 template <class program>
 void sort(list <program>& father) {
-	auto it = father.begin();
-	auto it1 = father.begin();
-	auto it2 = ++it1;
-	for (; it != father.end(); ++it) {
-		for (; it2 != (father.end()--); ++it2) {
-			if (*it > *it2)
-				swap(*it, *it2);
+	auto firstIt = father.begin();
+	auto thirdIt = father.begin();
+	auto secondIt = ++thirdIt;
+	for (; firstIt != father.end(); ++firstIt) {
+		for (; secondIt != (father.end()--); ++secondIt) {
+			if (*firstIt > *secondIt)
+				swap(*firstIt, *secondIt);
 		}
 	}
 }
 
 int main() {
-	list <program> progList;
-	program prog1(777, 1337, "Abobe Photoshop");
-	program prog2(-0, 47, "Hearth$$$tone");
-	program prog3(-666, 418, "viSuAlStUdIO 2010 <3 ");
+	list <program> listOfNames;
+	program firstName(5000, 13, "Valorant");
+	program secondName(-0, 145, "Minecraft");
+	program thirdName(-1234, 123, "World of Warcraft");
 
-	progList.push_back(prog1);
-	progList.push_back(prog2);
-	progList.push_back(prog3);
+	listOfNames.push_back(firstName);
+	listOfNames.push_back(secondName);
+	listOfNames.push_back(thirdName);
 
-	print(progList);
+	print(listOfNames);
 
-	sort(progList);
+	sort(listOfNames);
 
-	print(progList);
+	print(listOfNames);
 	cout << endl;
 
-	cout << pop(progList) << endl;
+	cout << pop(listOfNames) << endl;
 
-	print(progList);
+	print(listOfNames);
 
 	return 0;
 }
