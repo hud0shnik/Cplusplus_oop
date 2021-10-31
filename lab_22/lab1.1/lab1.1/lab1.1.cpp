@@ -5,80 +5,80 @@
 using namespace std;
 
 
-void print(list <char>& llist) {
-	for (auto it = llist.begin(); it != llist.end(); *it++) {
+void print(list <char>& listOfLetters) {
+	for (auto it = listOfLetters.begin(); it != listOfLetters.end(); *it++) {
 		cout << *it << " ";
 	}
 	cout << endl;
 }
 
-void pop(list <char>& llist, char ch) {
-	llist.remove(ch);
+void pop(list <char>& listOfLetters, char letter) {
+	listOfLetters.remove(letter);
 }
 
-bool predikant(char ch) {
-	if (islower(ch)) {
+bool predicate(char letter) {
+	if (islower(letter)) {
 		return true;
 	}
 	return false;
 }
-void push(list <char>& llist, char ch) {
-	auto it = llist.begin();
-	while ((it != llist.end()) && (ch > *it)) {
+void push(list <char>& listOfLetters, char letter) {
+	auto it = listOfLetters.begin();
+	while ((it != listOfLetters.end()) && (letter > *it)) {
 		*it++;
 	}
-	if (it != llist.end())
-		llist.insert(it, ch);
+	if (it != listOfLetters.end())
+		listOfLetters.insert(it, letter);
 	else
-		llist.push_back(ch);
+		listOfLetters.push_back(letter);
 }
-list <char> filter(list <char>& llist, bool(*ptr)(char)) {
-	list <char> son;
-	auto it = llist.begin();
-	while (it != llist.end()) {
-		if (predikant(*it)) {
-			son.push_back(*it);
+list <char> filter(list <char>& listOfLetters, bool(*ptr)(char)) {
+	list <char> newListOfLetters;
+	auto it = listOfLetters.begin();
+	while (it != listOfLetters.end()) {
+		if (predicate(*it)) {
+			newListOfLetters.push_back(*it);
 		}
 		*it++;
 	}
-	return son;
+	return newListOfLetters;
 }
 
 
 int main() {
-	list <char> llist, llist2;
+	list <char> listOfLetters, newListOfLetters;
 
-	llist.push_back('U');
-	llist.push_back('S');
-	llist.push_back('S');
-	llist.push_back('R');
-	llist.push_back('U');
-	llist.push_back('w');
-	llist.push_back('u');
-	llist.push_back('o');
-	llist.push_back('w');
-	llist.push_back('O');
-	cout << "Before push: " << endl;
-	print(llist);
+	listOfLetters.push_back('I');
+	listOfLetters.push_back('L');
+	listOfLetters.push_back('O');
+	listOfLetters.push_back('V');
+	listOfLetters.push_back('E');
+	listOfLetters.push_back('c');
+	listOfLetters.push_back('o');
+	listOfLetters.push_back('d');
+	listOfLetters.push_back('i');
+	listOfLetters.push_back('n');
+	listOfLetters.push_back('g');
+	cout << "Before push" << endl;
+	print(listOfLetters);
 
-	push(llist, 'a');
-	push(llist, 'b');
-	push(llist, 'O');
-	push(llist, 'B');
-	cout << "After push: " << endl;
-	print(llist);
+	push(listOfLetters, 'a');
+	push(listOfLetters, 'b');
+	push(listOfLetters, 'C');
+	push(listOfLetters, 'D');
+	cout << "After push" << endl;
+	print(listOfLetters);
 
-	cout << "After pop: " << endl;
-	pop(llist, 'a');
-	print(llist);
+	cout << "After pop" << endl;
+	pop(listOfLetters, 'a');
+	print(listOfLetters);
 
 	bool(*ptr)(char);
-	ptr = predikant;
-	llist2 = filter(llist, ptr);
+	ptr = predicate;
+	newListOfLetters = filter(listOfLetters, ptr);
 	cout << "\n";
 
-	cout << "After filter: " << endl;
-	print(llist2);
-	cout << "That's all! UwU" << endl;
+	cout << "After filter" << endl;
+	print(newListOfLetters);
 	return 0;
 }
