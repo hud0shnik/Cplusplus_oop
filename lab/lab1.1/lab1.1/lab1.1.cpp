@@ -5,12 +5,13 @@
 // Интелектуальна собственность Дани
 using namespace std;
 
-/*Задание:
+/*Вариант 4
 Тип T: Complex
 Условие предиката P: Только числа с отрицательной действительной частью
 */
 
-void push(list < complex < int >>& lst, complex < int > element) {
+template<class T>
+void push(list <T>& lst, T element) {
     auto it = lst.begin();
     while ((it != lst.end()) && (sqrt(real(element) * real(element) + imag(element) * imag(element)) > sqrt(real(*it) * real(*it) + imag(*it) * imag(*it)))) {
         *it++;
@@ -21,19 +22,22 @@ void push(list < complex < int >>& lst, complex < int > element) {
         lst.push_back(element);
 }
 
-void pop(list < complex < int >>& lst, complex < int > element) {
+template<class T>
+void pop(list <T>& lst, T element) {
     lst.remove(element);
 }
 
-bool P(complex < int > element) {
+template<class T>
+bool P(T element) {
     if (real(element) < 0) {
         return true;
     }
     return false;
 }
 
-list < complex < int > > filter(list < complex < int > >& lst, bool(*ptr)(complex < int >)) {
-    list < complex < int > > son;
+template<class T>
+list < T> filter(list < T >& lst, bool(*ptr)(T)) {
+    list<T> son;
     auto it = lst.begin();
     while (it != lst.end()) {
         if (P(*it)) {
@@ -44,7 +48,8 @@ list < complex < int > > filter(list < complex < int > >& lst, bool(*ptr)(comple
     return son;
 }
 
-void print(list < complex < int > >& lst) {
+template<class T>
+void print(list <T>& lst) {
     for (auto it = lst.begin(); it != lst.end(); *it++) {
         cout << *it << " ";
     }
@@ -54,26 +59,25 @@ void print(list < complex < int > >& lst) {
 int main() {
     //Инициализируем два списка
     list < complex < int >> lst, lst2;
-
+    complex <int> first, second;
+    first = -3;
+    second = -11;
     //Заполняем первый список элементами
     for (int i = 0; i < 10; i += 2) {
-        std::complex < int > compNum(i, 1);
+        std::complex < int > compNum(i, 0);
         lst.push_back(compNum);
     }
     cout << "Before push(): " << endl;
     print(lst);
-
     //Пушим элементы в него
-    push(lst, -5);
-    push(lst, -3);
-    push(lst, -44);
-    push(lst, -10);
+    push(lst, first);
+    push(lst, second);
     cout << "After push(): " << endl;
     print(lst);
 
     //Удаляем элемент с вещественным числом -3
     cout << "After pop(): " << endl;
-    pop(lst, -3);
+    pop(lst, first);
     print(lst);
 
     //Фильтруем первый список, и записываем результат во второй 
