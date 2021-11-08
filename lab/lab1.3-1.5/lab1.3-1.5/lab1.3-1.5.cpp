@@ -305,7 +305,6 @@ public:
 			Stack <T> ::push(element.getValue());
 			p++;
 			k++;
-			Stack <T> ::pop();
 		}
 
 		if (result == NULL) {
