@@ -1,13 +1,13 @@
 #include <iostream>
 #include <array>
-#include <chrono> // ��� ������� �� std::chrono
-#include <algorithm> // ��� std::sort()
+#include <chrono> 
+#include <algorithm> 
 
-const int g_arrayElements = 10000; // ����� ���������� ���� ��������� �������
+const int g_arrayElements = 10000; 
 
 class Timer {
   private:
-    // ���������� ����� ������������ ��� �������� ������� � ��������� �����
+
     using clock_t = std::chrono::high_resolution_clock;
   using second_t = std::chrono::duration < double, std::ratio < 1 > > ;
 
@@ -27,22 +27,20 @@ class Timer {
 
 void sortArray(std::array < int, g_arrayElements > & array) {
 
-  // ���������� ������ ������� ������� (����� ����������, �� ��� ����� ������������ � ���� �������, ����� �� �� ���� ���������)
+
   for (int startIndex = 0; startIndex < g_arrayElements - 1; ++startIndex) {
-    // � ���������� smallestIndex �������� ������ ����������� ��������, ������� �� ����� � ���� ��������.
-    // ������ � ����, ��� ���������� ������� � ���� �������� - ��� ������ ������� (������ 0)
+
     int smallestIndex = startIndex;
 
-    // ����� ���� ������� ������ ������ smallestIndex � ���������� ����� �������
+
     for (int currentIndex = startIndex + 1; currentIndex < g_arrayElements; ++currentIndex) {
-      // ���� ����� �������, ������� ������ ������ ����������� ��������
+
       if (array[currentIndex] < array[smallestIndex])
-        // �� ����������/���������� ���
+
         smallestIndex = currentIndex;
     }
 
-    // smallestIndex ������ �������� ���������� ��������� � ���������� ����� �������.
-    // ������ ������� ���� ��������� ���������� �������� � ���, ������� �� ����������
+
     std::swap(array[startIndex], array[smallestIndex]);
   }
 }
