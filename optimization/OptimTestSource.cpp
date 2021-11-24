@@ -3,58 +3,58 @@
 #include <chrono> 
 #include <algorithm> 
 
-const int g_arrayElements = 10000; 
+const int g_arrayElements = 10000;
 
 class Timer {
-  private:
+private:
 
-    using clock_t = std::chrono::high_resolution_clock;
-  using second_t = std::chrono::duration < double, std::ratio < 1 > > ;
+	using clock_t = std::chrono::high_resolution_clock;
+	using second_t = std::chrono::duration < double, std::ratio < 1 > >;
 
-  std::chrono::time_point < clock_t > m_beg;
+	std::chrono::time_point < clock_t > m_beg;
 
-  public:
-    Timer(): m_beg(clock_t::now()) {}
+public:
+	Timer() : m_beg(clock_t::now()) {}
 
-  void reset() {
-    m_beg = clock_t::now();
-  }
+	void reset() {
+		m_beg = clock_t::now();
+	}
 
-  double elapsed() const {
-    return std::chrono::duration_cast < second_t > (clock_t::now() - m_beg).count();
-  }
+	double elapsed() const {
+		return std::chrono::duration_cast <second_t> (clock_t::now() - m_beg).count();
+	}
 };
 
-void sortArray(std::array < int, g_arrayElements > & array) {
+void sortArray(std::array < int, g_arrayElements >& array) {
 
 
-  for (int startIndex = 0; startIndex < g_arrayElements - 1; ++startIndex) {
+	for (int startIndex = 0; startIndex < g_arrayElements - 1; ++startIndex) {
 
-    int smallestIndex = startIndex;
-
-
-    for (int currentIndex = startIndex + 1; currentIndex < g_arrayElements; ++currentIndex) {
-
-      if (array[currentIndex] < array[smallestIndex])
-
-        smallestIndex = currentIndex;
-    }
+		int smallestIndex = startIndex;
 
 
-    std::swap(array[startIndex], array[smallestIndex]);
-  }
+		for (int currentIndex = startIndex + 1; currentIndex < g_arrayElements; ++currentIndex) {
+
+			if (array[currentIndex] < array[smallestIndex])
+
+				smallestIndex = currentIndex;
+		}
+
+
+		std::swap(array[startIndex], array[smallestIndex]);
+	}
 }
 
 int main() {
-  std::array < int, g_arrayElements > array;
-  for (int i = 0; i < g_arrayElements; ++i)
-    array[i] = g_arrayElements - i;
+	std::array < int, g_arrayElements > array;
+	for (int i = 0; i < g_arrayElements; ++i)
+		array[i] = g_arrayElements - i;
 
-  Timer t;
+	Timer t;
 
-  std::sort(array.begin(), array.end());
+	std::sort(array.begin(), array.end());
 
-  std::cout << "Time taken: " << t.elapsed() << '\n';
+	std::cout << "Time taken: " << t.elapsed() << '\n';
 
-  return 0;
+	return 0;
 }
