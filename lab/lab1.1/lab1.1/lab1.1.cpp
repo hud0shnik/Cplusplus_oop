@@ -22,28 +22,16 @@ void push(list <T>& lst, T element) {
 		lst.push_back(element);
 }
 
+
 template<class T>
-T pop(list<T>& lst, size_t pos){
-	T result;
-	auto p = lst.begin();
-	size_t i = 0;
-	while (p != lst.end())	{
-		auto& val = *p;
-		p++;
-		if (i == pos){
-			result = val;
-		}
-		if (i >= pos){
-			if (p != lst.end())
-				val = *p;
-		}
-		i++;
-	}
-	lst.pop_back();
-	return result;
+T pop(list<T>& father){
+	T temp = father.front();
+	father.pop_front();
+	return temp;
 }
 
-bool P(complex <int> element) {
+template<class T>
+bool P(T element) {
 	if (real(element) < 0) {
 		return true;
 	}
@@ -92,7 +80,7 @@ int main() {
 
 	//Удаляем первый элемент 
 	cout << "After pop(): " << endl;
-	cout << "Deleted element: " << pop(lst, 0) << endl;
+	cout << "Deleted element: " << pop(lst) << endl;
 		print(lst);
 
 	//Фильтруем первый список, и записываем результат во второй 
