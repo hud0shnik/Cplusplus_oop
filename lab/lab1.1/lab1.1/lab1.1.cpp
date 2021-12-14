@@ -23,12 +23,27 @@ void push(list <T>& lst, T element) {
 }
 
 template<class T>
-void pop(list <T>& lst, T element) {
-	lst.remove(element);
+T pop(list<T>& lst, size_t pos){
+	T result;
+	auto p = lst.begin();
+	size_t i = 0;
+	while (p != lst.end())	{
+		auto& val = *p;
+		p++;
+		if (i == pos){
+			result = val;
+		}
+		if (i >= pos){
+			if (p != lst.end())
+				val = *p;
+		}
+		i++;
+	}
+	lst.pop_back();
+	return result;
 }
 
-template<class T>
-bool P(T element) {
+bool P(complex <int> element) {
 	if (real(element) < 0) {
 		return true;
 	}
@@ -75,10 +90,10 @@ int main() {
 	cout << "After push(): " << endl;
 	print(lst);
 
-	//Удаляем элемент с вещественным числом -3
+	//Удаляем первый элемент 
 	cout << "After pop(): " << endl;
-	pop(lst, first);
-	print(lst);
+	cout << "Deleted element: " << pop(lst, 0) << endl;
+		print(lst);
 
 	//Фильтруем первый список, и записываем результат во второй 
 	bool(*ptr)(complex <int >);
