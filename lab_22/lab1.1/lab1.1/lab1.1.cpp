@@ -12,9 +12,14 @@ void print(list <char>& listOfLetters) {
 	cout << endl;
 }
 
-void pop(list <char>& listOfLetters, char letter) {
-	listOfLetters.remove(letter);
+template<class T>
+T pop(list<T>& father)
+{
+	T temp = father.front();
+	father.pop_front();
+	return temp;
 }
+
 
 bool predicate(char letter) {
 	if (islower(letter)) {
@@ -70,7 +75,7 @@ int main() {
 	print(listOfLetters);
 
 	cout << "After pop" << endl;
-	pop(listOfLetters, 'a');
+	pop(listOfLetters);
 	print(listOfLetters);
 
 	bool(*ptr)(char);
