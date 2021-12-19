@@ -2,7 +2,7 @@
 #include <list>
 #include <complex>
 #include <iterator>
-// Интелектуальна собственность Дани
+// Интеллектуальна собственность Дани
 using namespace std;
 
 /*Задание:

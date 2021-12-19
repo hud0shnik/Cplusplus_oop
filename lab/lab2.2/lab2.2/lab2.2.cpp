@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <queue>
 #include <ostream>
-
+//Интеллектуальная собственность Дани
 using namespace std;
 
 class sportsman {

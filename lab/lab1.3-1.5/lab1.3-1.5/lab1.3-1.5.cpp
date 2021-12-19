@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <complex>
-
+//Интеллектуальная собственность Дани
 using namespace std;
 // 4 вариант - Стек
 
