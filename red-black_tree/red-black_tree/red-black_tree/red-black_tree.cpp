@@ -4,8 +4,8 @@ using namespace std;
 
 struct node {
     int key;
-    char color;
     node* parent;
+    char color;
     node* left;
     node* right;
 };
@@ -17,18 +17,19 @@ public:
         q = NULL;
         root = NULL;
     }
-    void insert();
+    void insert(); //функция ввода
     void insertfix(node*);
     void leftrotate(node*);
     void rightrotate(node*);
-    void del();
+    void del(); //функция удаления
     node* successor(node*);
     void delfix(node*);
-    void disp();
+    void disp(); //функция вывода результата
     void display(node*);
-    void search();
+    void search(); //функция поиска
 };
-void RBtree::insert() {
+void RBtree::insert() //функция ввода
+{
     int z, i = 0;
     cout << "\nEnter key of the node to be inserted: ";
     cin >> z;
@@ -112,7 +113,8 @@ void RBtree::insertfix(node* t) {
     }
 }
 
-void RBtree::del() {
+void RBtree::del() //функция удаления
+{
     if (root == NULL) {
         cout << "\nEmpty Tree.";
         return;
@@ -315,7 +317,8 @@ node* RBtree::successor(node* p) {
     return y;
 }
 
-void RBtree::disp() {
+void RBtree::disp() //функция вывода результата
+{
     display(root);
 }
 void RBtree::display(node* p) {
@@ -358,7 +361,8 @@ void RBtree::display(node* p) {
          cout<<"\nNo Right Child.\n"*/
     }
 }
-void RBtree::search() {
+void RBtree::search() //функция поиска
+{
     if (root == NULL) {
         cout << "\nEmpty Tree\n";
         return;
@@ -415,28 +419,29 @@ int main() {
         cout << "\n 5. Exit ";
         cout << "\nEnter Your Choice: ";
         cin >> ch;
-        switch (ch) {
-        case 1:
+
+        if (ch == 1) {
             obj.insert();
             cout << "\nNode Inserted.\n";
-            break;
-        case 2:
+
+        }
+        else if (ch == 2) {
             obj.del();
-            break;
-        case 3:
+        }
+        else if (ch == 3) {
             obj.search();
-            break;
-        case 4:
+        }
+        else if (ch == 4) {
             obj.disp();
-            break;
-        case 5:
+        }
+        else if (ch == 5) {
             y = 1;
-            break;
-        default:
+        }
+        else {
             cout << "\nEnter a Valid Choice.";
         }
         cout << endl;
 
     } while (y != 1);
-    return 1;
+    return 0;
 }
