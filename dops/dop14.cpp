@@ -1,9 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
 #include <list>
-
 #include <set>
-
 using namespace std;
 
 list < string > calculate(vector < pair < string, string >> v) {
@@ -38,6 +36,20 @@ string calculate2(vector < pair < string, string >> v) {
     }
     return result;
 }
+string calculate3(vector < pair < string, string >> v) {
+    set < string > sett;
+    string result;
+    //Эта функция проходит по вектору один раз
+    for (int i = 0; i < v.size(); i++) {
+        //Если такого альбома нет в sett, добавляем его в result
+        if (sett.find(v[i].second) == sett.end()) {
+            result += v[i].second + " ";
+            //И добовляем его в sett чтобы избежать повторений
+            sett.insert(v[i].second);
+        }
+    }
+    return result;
+}
 
 int main() {
     vector<pair<string, string>> players;
@@ -57,5 +69,7 @@ int main() {
 
     string albums2 = calculate2(players);
     std::cout << "Albums: \n" << albums2;
+    string albums3 = calculate3(players);
+    std::cout << "\nAlbums: \n" << albums2;
     return 0;
 }
