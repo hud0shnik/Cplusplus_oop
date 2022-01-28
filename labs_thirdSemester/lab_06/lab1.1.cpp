@@ -49,7 +49,9 @@ template < class T >
   }
 
 bool P(Fraction element) {
-  return (element.num < element.denom);
+	if (element.num < 0)
+		return (-element.num < element.denom);
+	return (element.num < element.denom);
 }
 
 template < class T >
