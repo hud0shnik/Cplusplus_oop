@@ -5,27 +5,27 @@
 using namespace std;
 
 template < class T >
-void push(list < T >& lst, T element) {
+void push(list < T >& lst, T el) {
     auto it = lst.begin();
-    while ((it != lst.end()) && (element > *it)) {
+    while ((it != lst.end()) && (el > *it)) {
         *it++;
     }
     if (it != lst.end())
-        lst.insert(it, element);
+        lst.insert(it, el);
     else
-        lst.push_back(element);
+        lst.push_back(el);
 }
 
 template < class T >
-T pop(list < T >& father) {
-    T temp = father.front();
-    father.pop_front();
+T pop(list < T >& f) {
+    T temp = f.front();
+    f.pop_front();
     return temp;
 }
 
-bool P(int element) {
-    for (int i = 2; i < element; i++) {
-        if (element % i == 0) {
+bool P(int el) {
+    for (int i = 2; i < el; i++) {
+        if (el % i == 0) {
             return false;
         }
     }
@@ -34,15 +34,15 @@ bool P(int element) {
 
 template < class T >
 list < T > filter(list < T >& lst, bool(*ptr)(T)) {
-    list < T > son;
+    list < T > s;
     auto it = lst.begin();
     while (it != lst.end()) {
         if (P(*it)) {
-            son.push_back(*it);
+            s.push_back(*it);
         }
         *it++;
     }
-    return son;
+    return s;
 }
 
 template < class T >

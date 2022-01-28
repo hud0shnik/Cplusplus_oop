@@ -4,40 +4,40 @@
 using namespace std;
 
 template < class T >
-void push(list < T >& lst, T element) {
+void push(list < T >& lst, T el) {
     auto i = lst.begin();
-    while ((i != lst.end()) && (element > *i)) {
+    while ((i != lst.end()) && (el > *i)) {
         *i++;
     }
 
     if (i != lst.end())
-        lst.insert(i, element);
+        lst.insert(i, el);
     else
-        lst.push_back(element);
+        lst.push_back(el);
 }
 
 template < class T >
-void pop(list < T >& lst, T element) {
-    lst.remove(element);
+void pop(list < T >& lst, T el) {
+    lst.remove(el);
 }
 
 template < class T >
 list < T > filter(list < T >& lst, bool(*ptr)(T)) {
-    list < complex < int >> son;
+    list < complex < int >> n;
     auto i = lst.begin();
     while (i != lst.end()) {
         if (P(*i)) {
-            son.push_back(*i);
+            n.push_back(*i);
         }
         *i++;
     }
-    return son;
+    return n;
 }
 
 template < class smartPhone >
-void print(list < smartPhone >& father) {
-    auto i = father.begin();
-    for (; i != father.end(); ++i) {
+void print(list < smartPhone >& f) {
+    auto i = f.begin();
+    for (; i != f.end(); ++i) {
         cout << *i;
     }
 }
@@ -128,12 +128,12 @@ ostream& operator << (ostream& result,
 }
 
 template < class smartPhone >
-void bubble(list < smartPhone >& father) {
-    auto i = father.begin();
-    auto i1 = father.begin();
+void bubble(list < smartPhone >& f) {
+    auto i = f.begin();
+    auto i1 = f.begin();
     auto i2 = ++i1;
-    for (; i != father.end(); ++i) {
-        for (; i2 != (father.end()--); ++i2) {
+    for (; i != f.end(); ++i) {
+        for (; i2 != (f.end()--); ++i2) {
             if (*i > *i2)
                 swap(*i, *i2);
         }

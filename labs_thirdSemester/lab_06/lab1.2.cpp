@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 #include <list>
-#include <complex>
 #include <iterator>
 using namespace std;
 
