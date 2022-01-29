@@ -10,10 +10,14 @@ using namespace std;
 Условие предиката P: Только числа с отрицательной действительной частью
 */
 
+bool operator > (complex <int > R, complex <int >L) {
+	return sqrt(real(R) * real(R) + imag(R) * imag(R)) > sqrt(real(L) * real(L) + imag(L) * imag(L));
+}
+
 template<class T>
 void push(list <T>& lst, T element) {
 	auto it = lst.begin();
-	while ((it != lst.end()) && (sqrt(real(element) * real(element) + imag(element) * imag(element)) > sqrt(real(*it) * real(*it) + imag(*it) * imag(*it)))) {
+	while ((it != lst.end()) && (element > *it)) {
 		*it++;
 	}
 	if (it != lst.end())
@@ -23,7 +27,7 @@ void push(list <T>& lst, T element) {
 }
 
 template<class T>
-T pop(list<T>& father){
+T pop(list<T>& father) {
 	T temp = father.front();
 	father.pop_front();
 	return temp;
@@ -76,7 +80,7 @@ int main() {
 	//Удаляем первый элемент 
 	cout << "After pop(): " << endl;
 	cout << "Deleted element: " << pop(lst) << endl;
-		print(lst);
+	print(lst);
 
 	//Фильтруем первый список, и записываем результат во второй 
 	bool(*ptr)(complex <int >);
