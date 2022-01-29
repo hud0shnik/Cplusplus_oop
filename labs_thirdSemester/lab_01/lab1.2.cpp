@@ -17,8 +17,9 @@ void push(list <T>& lst, T element) {
 }
 
 template <class T>
-void pop(list <T>& lst, T element) {
+T pop(list <T>& lst, T element) {
 	lst.remove(element);
+	return element;
 }
 
 template<class T>
