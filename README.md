@@ -20,3 +20,5 @@
 <h3 align="left">🔗 Шорткаты:</h3>
 
 [labs_thirdSemester](https://github.com/hud0shnik/Cplusplus_oop/tree/master/labs_thirdSemester) - задания для допуска к сессии по программированию за третий семестр.
+
+[dops](https://github.com/hud0shnik/Cplusplus_oop/tree/master/dops) -дополнительные вопросы к сессии по программированию за третий семестр.
